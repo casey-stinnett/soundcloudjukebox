@@ -1,0 +1,38 @@
+h1,h2,h3,h4,h5,h6 {
+	text-align: center;
+}
+
+#img-wrapper {
+	width: 400px;
+	height: 450px;
+	margin: 0 auto;
+}
+
+#img-wrapper img {
+	width: 100%;
+	height: 100%;
+}
+
+#description {
+	width: 700px;
+	margin: 0 auto;
+}
+
+.genre-date-wrapper {
+	margin: 0 auto;
+	text-align: center;
+	width: 275px;
+}
+
+.prev-error, .next-error {
+	display: none;
+	margin: 20px auto;
+	width: 450px;
+	text-align: center;
+	padding: 5px;
+	border: 2px solid red;
+	border-radius: 8px;
+	background: #de6868;
+	color: #c7172c;
+
+}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Sound Cloud API Jukebox</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://connect.soundcloud.com/sdk/sdk-3.1.2.js"></script>
+	<script src="jukebox.js"></script>
+	<link rel="stylesheet" href="jukebox.css">
+</head>
+<body>
+	<div class="main">
+		<h1 class="title">Title</h1>
+		<div class="next-error">That's the last song, dude.</div>
+		<div class="prev-error">That's the first song, dude.</div>
+		<div id="img-wrapper">
+			<img id="artwork">
+		</div>
+		<h3 class="artist-name">Artist Name</h3>
+		<div class="genre-date-wrapper">
+			<span class="info"></span>
+		</div>
+		<br>
+		<p id="description"></p>
+	</div>
+</body>
+</html>

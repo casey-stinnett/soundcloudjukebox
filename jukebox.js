@@ -10,7 +10,7 @@ function Jukebox() {
 	_this = this;
 
 	SC.get("/tracks",{
-		q: '30 seconds to mars'
+		q: 'herrey'
 	}).then(function(playlist) {
 		console.log(playlist);
 		_this.playlist = playlist;
@@ -21,6 +21,7 @@ function Jukebox() {
 	this.play = function(){
 		this.currentTrackStream.then(function(player){
 			player.play();
+			_this.displayInfo();
 		});
 	}
 	this.pause = function(){
@@ -30,32 +31,23 @@ function Jukebox() {
 	}
 	this.next = function(){
 		//Check to make sure we don't go beyond the end of the array
-		if ((this.songIndex + 1) < this.playlist.length - 1) {
-			this.songIndex++;
+			this.songIndex = ((this.songIndex + 1) > (this.playlist.length-1) ? 0 : this.songIndex+1);
 			this.currentSong = this.playlist[this.songIndex];
 			this.currentTrackStream = SC.stream('/tracks/' + this.currentSong.id);
 			this.play();
 			this.displayInfo();
 			$(document).focus();
-			return true;
-		}
-		return false;	
 	}
 	this.previous = function(){
-		if ((this.songIndex - 1) > 0) {
-			this.songIndex--;
-			this.currentSong = this.playlist[this.songIndex];
+			this.songIndex = ((this.songIndex - 1) < 0 ? this.playlist.length-1 : this.songIndex-1);			this.currentSong = this.playlist[this.songIndex];
 			this.currentTrackStream = SC.stream('/tracks/' + this.currentSong.id);
 			this.play();
 			this.displayInfo();
 			$(document).focus();
-			return true;
-		}
-		return false;
 	}
 	//Display song info on the HTML page
 	this.displayInfo = function(){
-		$('.title').text(this.currentSong.title);
+		$('.title').html('<a target="_blank" href="' + this.currentSong.permalink_url + '">' + this.currentSong.title + '</a>');
 		$('.artist-name').text(this.currentSong.user.username);
 		$('#description').text(this.currentSong.description);
 
@@ -72,22 +64,20 @@ $(document).ready(function(){
 	$(document).keyup(function(e){
 		if (e.key === ' ') {
 			juke.play();
-			juke.displayInfo();
 		}
 		if (e.key === 'p') {
 			juke.pause();
 		}
 		if (e.which === 37) {
-			if(!juke.previous()){
-				$('.prev-error').show().delay(4000).fadeOut();
-			}
+			juke.previous();
 		}
 		if (e.which === 39) {
-			if(!juke.next()){
-				$('.next-error').show().delay(4000).fadeOut();
-			}
+			juke.next();
 		}
 	});
 
 
+});
+$('#pause').click(function () {
+	// body...
 });

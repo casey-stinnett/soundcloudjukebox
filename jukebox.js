@@ -2,7 +2,7 @@ function Jukebox() {
 	//Initialize with the client id when the object instance is made
 	SC.initialize({
 		client_id: 'f665fc458615b821cdf1a26b6d1657f6'
-	});
+	}); 
 	this.playlist = null;
 	this.songIndex = 0;
 	this.currentTrackStream = null;
